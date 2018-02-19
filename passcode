@@ -13,7 +13,6 @@ void login(){
     // & system("/bin/cat flag") add chg
 	// fflush() >  system()
 	// flag
-//---------------------------------------------------
 	// ha! mommy told me that 32bit 
 	// is vulnerable to bruteforcing :)
     // learn to plt,got
